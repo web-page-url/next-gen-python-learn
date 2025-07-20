@@ -115,7 +115,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     "stringMethodsConcept": "Strings have special powers (methods) to change themselves!\n\nExample:\ntext = 'hello world'\nprint(text.upper())    # Shows: HELLO WORLD\nprint(text.lower())    # Shows: hello world\nprint(text.title())    # Shows: Hello World\n\nUse dot (.) to access string powers!",
     "finalChallengeConcept": "Time to combine everything! Like cooking - you use multiple ingredients and techniques.\n\nExample of what we'll combine:\n- Lists: [1, 2, 3, 4, 5]\n- For loops: for number in list\n- Math: number * 2\n- Print: print(result)\n\nBreak big problems into small steps!",
     "exampleLabel": "💡 Example:",
-    "tryItLabel": "Now try it yourself!"
+    "tryItLabel": "Now try it yourself!",
+    "aiThinking": "🤖 AI is analyzing your code...",
+    "aiHelpLabel": "🤖 AI Tutor Says:",
+    "correctSolutionLabel": "✅ Correct Solution:",
+    "aiTipLabel": "💡 AI Tip:",
+    "tryAgainButton": "Try Again"
   },
   "es-ES": {
     "helloWorldTitle": "Hola Mundo",
@@ -233,6 +238,11 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     "stringMethodsConcept": "¡Las cadenas tienen poderes especiales (métodos) para cambiarse a sí mismas!\n\nEjemplo:\ntexto = 'hola mundo'\nprint(texto.upper())    # Muestra: HOLA MUNDO\nprint(texto.lower())    # Muestra: hola mundo\nprint(texto.title())    # Muestra: Hola Mundo\n\n¡Usa punto (.) para acceder a los poderes de las cadenas!",
     "finalChallengeConcept": "¡Hora de combinar todo! Como cocinar - usas múltiples ingredientes y técnicas.\n\nEjemplo de lo que combinaremos:\n- Listas: [1, 2, 3, 4, 5]\n- Bucles for: for numero in lista\n- Matemáticas: numero * 2\n- Print: print(resultado)\n\n¡Divide problemas grandes en pasos pequeños!",
     "exampleLabel": "💡 Ejemplo:",
-    "tryItLabel": "¡Ahora inténtalo tú mismo!"
+    "tryItLabel": "¡Ahora inténtalo tú mismo!",
+    "aiThinking": "🤖 La IA está analizando tu código...",
+    "aiHelpLabel": "🤖 El Tutor IA Dice:",
+    "correctSolutionLabel": "✅ Solución Correcta:",
+    "aiTipLabel": "💡 Consejo de IA:",
+    "tryAgainButton": "Intentar de Nuevo"
   }
 };
