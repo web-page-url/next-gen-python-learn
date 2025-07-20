@@ -72,7 +72,7 @@ const PyLingo = () => {
 
   // Update user code when level changes
   useEffect(() => {
-    const level = levels.find(l => l.id === currentLevel);
+    const level = levels.find((l: any) => l.id === currentLevel);
     if (level) {
       setUserCode(level.starterCode);
       setShowHint(false);
@@ -175,7 +175,7 @@ const PyLingo = () => {
   };
 
   const handleSubmit = async () => {
-    const level = levels.find(l => l.id === currentLevel);
+    const level = levels.find((l: any) => l.id === currentLevel);
     if (!level) return;
 
     // Set loading state
@@ -226,12 +226,12 @@ const PyLingo = () => {
           }
 
           const aiData = await aiResponse.json();
-          
+
           // Check if AI returned an error
           if (aiData.error) {
             throw new Error(aiData.error);
           }
-          
+
           setFeedback({
             type: 'ai-error',
             message: t('notQuiteRight'),
@@ -266,7 +266,7 @@ const PyLingo = () => {
   };
 
   const handleReset = () => {
-    const level = levels.find(l => l.id === currentLevel);
+    const level = levels.find((l: any) => l.id === currentLevel);
     if (level) {
       setUserCode(level.starterCode);
       setFeedback(null);
@@ -283,7 +283,7 @@ const PyLingo = () => {
     }
   };
 
-  const currentLevelData = levels.find(l => l.id === currentLevel);
+  const currentLevelData = levels.find((l: any) => l.id === currentLevel);
   const progressPercentage = (completedLevels.size / levels.length) * 100;
 
   if (!currentLevelData) return null;
@@ -347,7 +347,7 @@ const PyLingo = () => {
                 </button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {levels.map((level) => {
+                {levels.map((level: any) => {
                   const isCompleted = completedLevels.has(level.id);
                   const isLocked = level.id > Math.max(1, Math.max(...Array.from(completedLevels)) + 1);
                   const isCurrentLevel = level.id === currentLevel;
@@ -408,7 +408,7 @@ const PyLingo = () => {
                   {t('conceptLabel').replace('📚 ', '')}
                 </h3>
                 <div className="text-purple-700 leading-relaxed">
-                  {currentLevelData.concept.split('\n').map((line, index) => {
+                  {currentLevelData.concept.split('\n').map((line: string, index: number) => {
                     // Check if line is code (starts with certain patterns or contains code indicators)
                     const isCodeLine = line.trim().startsWith('print(') ||
                       line.trim().startsWith('age =') ||
@@ -631,7 +631,7 @@ const PyLingo = () => {
                 {/* AI Feedback Message */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                   <div className="text-gray-700 leading-relaxed text-base">
-                    {feedback.aiFeedback.split('\n').map((paragraph, index) => (
+                    {feedback.aiFeedback.split('\n').map((paragraph: string, index: number) => (
                       paragraph.trim() && (
                         <p key={index} className="mb-3 last:mb-0">
                           {paragraph}
@@ -658,7 +658,7 @@ const PyLingo = () => {
                         {feedback.output || 'No output'}
                       </pre>
                     </div>
-                    
+
                     {/* Expected Output */}
                     <div className="bg-white rounded-lg p-4 border-2 border-green-200">
                       <div className="flex items-center mb-3">
@@ -695,7 +695,7 @@ const PyLingo = () => {
                       Step-by-Step Explanation
                     </h4>
                     <div className="text-purple-700 leading-relaxed">
-                      {feedback.aiExplanation.split('\n').map((step, index) => (
+                      {feedback.aiExplanation.split('\n').map((step: string, index: number) => (
                         step.trim() && (
                           <div key={index} className="mb-3 last:mb-0 flex items-start">
                             <span className="inline-flex items-center justify-center w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
