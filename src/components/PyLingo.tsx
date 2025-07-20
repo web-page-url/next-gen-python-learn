@@ -387,9 +387,9 @@ const PyLingo = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-8">
           {/* Left Panel - Instructions */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="xl:col-span-2 bg-white rounded-xl shadow-lg p-6">
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-gray-800">
@@ -525,139 +525,16 @@ const PyLingo = () => {
                   )}
                 </p>
 
-                {/* AI Feedback Section - Redesigned */}
-                {feedback.type === 'ai-error' && feedback.aiFeedback && (
-                  <div className="space-y-6">
-                    {/* AI Tutor Header with Avatar */}
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 text-white shadow-lg">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl">
-                          🤖
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold">AI Tutor</h3>
-                          <p className="text-blue-100 text-sm">Let me help you understand this!</p>
-                        </div>
+                {/* Simple feedback for left panel */}
+                {feedback.type === 'ai-error' && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">
+                        🤖
                       </div>
+                      <span className="font-semibold text-blue-800">AI Tutor is analyzing your code...</span>
                     </div>
-
-                    {/* AI Feedback Message */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                      <div className="prose prose-blue max-w-none">
-                        <div className="text-gray-700 leading-relaxed text-base">
-                          {feedback.aiFeedback && typeof feedback.aiFeedback === 'string' ? (
-                            feedback.aiFeedback.split('\n').map((paragraph, index) => (
-                              paragraph.trim() && (
-                                <p key={index} className="mb-3 last:mb-0">
-                                  {paragraph}
-                                </p>
-                              )
-                            ))
-                          ) : (
-                            <p className="text-gray-600 italic">
-                              I'm analyzing your code to provide helpful feedback...
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Output Comparison */}
-                    <div className="bg-gray-50 rounded-xl p-6">
-                      <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                        <span className="mr-2">🔍</span>
-                        Let's Compare the Results
-                      </h4>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Your Output */}
-                        <div className="bg-white rounded-lg p-4 border-2 border-red-200">
-                          <div className="flex items-center mb-3">
-                            <span className="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
-                            <h5 className="font-semibold text-red-700">Your Output</h5>
-                          </div>
-                          <pre className="bg-red-50 p-3 rounded-lg text-sm font-mono text-red-800 border border-red-200 overflow-x-auto">
-                            {feedback.output || 'No output'}
-                          </pre>
-                        </div>
-                        
-                        {/* Expected Output */}
-                        <div className="bg-white rounded-lg p-4 border-2 border-green-200">
-                          <div className="flex items-center mb-3">
-                            <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-                            <h5 className="font-semibold text-green-700">Expected Output</h5>
-                          </div>
-                          <pre className="bg-green-50 p-3 rounded-lg text-sm font-mono text-green-800 border border-green-200 overflow-x-auto">
-                            {feedback.expected}
-                          </pre>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Correct Solution */}
-                    {feedback.correctCode && (
-                      <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                        <h4 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
-                          <span className="mr-2">✨</span>
-                          Here's the Correct Solution
-                        </h4>
-                        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-                          <pre className="text-green-400 text-sm font-mono leading-relaxed">
-                            {feedback.correctCode}
-                          </pre>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Step-by-Step Explanation */}
-                    {feedback.aiExplanation && (
-                      <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
-                        <h4 className="text-lg font-semibold text-purple-800 mb-4 flex items-center">
-                          <span className="mr-2">📚</span>
-                          Step-by-Step Explanation
-                        </h4>
-                        <div className="text-purple-700 leading-relaxed">
-                          {feedback.aiExplanation.split('\n').map((step, index) => (
-                            step.trim() && (
-                              <div key={index} className="mb-3 last:mb-0 flex items-start">
-                                <span className="inline-flex items-center justify-center w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
-                                  {index + 1}
-                                </span>
-                                <p className="flex-1">{step}</p>
-                              </div>
-                            )
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Pro Tip */}
-                    {feedback.aiTip && (
-                      <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-6 text-white shadow-lg">
-                        <h4 className="text-lg font-bold mb-3 flex items-center">
-                          <span className="mr-2">💡</span>
-                          Pro Tip for Next Time
-                        </h4>
-                        <p className="text-yellow-50 leading-relaxed text-base">
-                          {feedback.aiTip}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
-                      <button
-                        onClick={() => setFeedback(null)}
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                      >
-                        🚀 Try Again
-                      </button>
-                      <button
-                        onClick={() => setShowHint(true)}
-                        className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                      >
-                        💡 Show Hint
-                      </button>
-                    </div>
+                    <p className="text-blue-700 text-sm">Check the right panel for detailed feedback!</p>
                   </div>
                 )}
 
@@ -694,43 +571,174 @@ const PyLingo = () => {
             )}
           </div>
 
-          {/* Right Panel - Code Editor */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="bg-gray-800 text-white p-4 flex items-center justify-between">
-              <div>
-                <h3 className="font-semibold">{t('pythonCodeEditor')}</h3>
-                <p className="text-xs text-gray-400 mt-1">
-                  Ctrl+Enter to run • Ctrl+R to reset
-                </p>
+          {/* Right Panel - Code Editor and AI Feedback */}
+          <div className="xl:col-span-3 space-y-6">
+            {/* Code Editor */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gray-800 text-white p-4 flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold">{t('pythonCodeEditor')}</h3>
+                  <p className="text-xs text-gray-400 mt-1">
+                    Ctrl+Enter to run • Ctrl+R to reset
+                  </p>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={handleReset}
+                    className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition-colors text-sm"
+                    title="Reset code (Ctrl+R)"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    <span>{t('resetButton')}</span>
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    className="flex items-center space-x-1 bg-green-600 hover:bg-green-500 px-3 py-1 rounded transition-colors text-sm"
+                    title="Run code (Ctrl+Enter)"
+                  >
+                    <Play className="w-4 h-4" />
+                    <span>{t('runCodeButton')}</span>
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={handleReset}
-                  className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition-colors text-sm"
-                  title="Reset code (Ctrl+R)"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  <span>{t('resetButton')}</span>
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  className="flex items-center space-x-1 bg-green-600 hover:bg-green-500 px-3 py-1 rounded transition-colors text-sm"
-                  title="Run code (Ctrl+Enter)"
-                >
-                  <Play className="w-4 h-4" />
-                  <span>{t('runCodeButton')}</span>
-                </button>
+              <div className="p-0">
+                <textarea
+                  value={userCode}
+                  onChange={(e) => setUserCode(e.target.value)}
+                  className="w-full h-96 p-4 font-mono text-sm bg-gray-900 text-green-400 border-0 resize-none focus:outline-none focus:ring-0"
+                  placeholder={t('codeEditorPlaceholder')}
+                  spellCheck={false}
+                />
               </div>
             </div>
-            <div className="p-0">
-              <textarea
-                value={userCode}
-                onChange={(e) => setUserCode(e.target.value)}
-                className="w-full h-96 p-4 font-mono text-sm bg-gray-900 text-green-400 border-0 resize-none focus:outline-none focus:ring-0"
-                placeholder={t('codeEditorPlaceholder')}
-                spellCheck={false}
-              />
-            </div>
+
+            {/* AI Feedback Section - Right Panel */}
+            {feedback?.type === 'ai-error' && feedback.aiFeedback && (
+              <div className="space-y-6">
+                {/* AI Tutor Header */}
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 text-white shadow-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl">
+                      🤖
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold">AI Tutor</h3>
+                      <p className="text-blue-100 text-sm">Let me help you understand this!</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Feedback Message */}
+                <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                  <div className="text-gray-700 leading-relaxed text-base">
+                    {feedback.aiFeedback.split('\n').map((paragraph, index) => (
+                      paragraph.trim() && (
+                        <p key={index} className="mb-3 last:mb-0">
+                          {paragraph}
+                        </p>
+                      )
+                    ))}
+                  </div>
+                </div>
+
+                {/* Output Comparison */}
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <span className="mr-2">🔍</span>
+                    Let's Compare the Results
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Your Output */}
+                    <div className="bg-white rounded-lg p-4 border-2 border-red-200">
+                      <div className="flex items-center mb-3">
+                        <span className="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                        <h5 className="font-semibold text-red-700">Your Output</h5>
+                      </div>
+                      <pre className="bg-red-50 p-3 rounded-lg text-sm font-mono text-red-800 border border-red-200 overflow-x-auto">
+                        {feedback.output || 'No output'}
+                      </pre>
+                    </div>
+                    
+                    {/* Expected Output */}
+                    <div className="bg-white rounded-lg p-4 border-2 border-green-200">
+                      <div className="flex items-center mb-3">
+                        <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                        <h5 className="font-semibold text-green-700">Expected Output</h5>
+                      </div>
+                      <pre className="bg-green-50 p-3 rounded-lg text-sm font-mono text-green-800 border border-green-200 overflow-x-auto">
+                        {feedback.expected}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Correct Solution */}
+                {feedback.correctCode && (
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                    <h4 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
+                      <span className="mr-2">✨</span>
+                      Here's the Correct Solution
+                    </h4>
+                    <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                      <pre className="text-green-400 text-sm font-mono leading-relaxed">
+                        {feedback.correctCode}
+                      </pre>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step-by-Step Explanation */}
+                {feedback.aiExplanation && (
+                  <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
+                    <h4 className="text-lg font-semibold text-purple-800 mb-4 flex items-center">
+                      <span className="mr-2">📚</span>
+                      Step-by-Step Explanation
+                    </h4>
+                    <div className="text-purple-700 leading-relaxed">
+                      {feedback.aiExplanation.split('\n').map((step, index) => (
+                        step.trim() && (
+                          <div key={index} className="mb-3 last:mb-0 flex items-start">
+                            <span className="inline-flex items-center justify-center w-6 h-6 bg-purple-200 text-purple-800 rounded-full text-xs font-bold mr-3 mt-0.5 flex-shrink-0">
+                              {index + 1}
+                            </span>
+                            <p className="flex-1">{step}</p>
+                          </div>
+                        )
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Pro Tip */}
+                {feedback.aiTip && (
+                  <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-6 text-white shadow-lg">
+                    <h4 className="text-lg font-bold mb-3 flex items-center">
+                      <span className="mr-2">💡</span>
+                      Pro Tip for Next Time
+                    </h4>
+                    <p className="text-yellow-50 leading-relaxed text-base">
+                      {feedback.aiTip}
+                    </p>
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+                  <button
+                    onClick={() => setFeedback(null)}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    🚀 Try Again
+                  </button>
+                  <button
+                    onClick={() => setShowHint(true)}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    💡 Show Hint
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

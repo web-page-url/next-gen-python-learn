@@ -82,8 +82,12 @@ const getFallbackResponse = (userCode: string, expectedOutput: string, task: str
 };
 
 export async function POST(request: NextRequest) {
+  let locale = 'en-US'; // Default locale
+  
   try {
-    const { userCode, expectedOutput, task, hint, locale } = await request.json();
+    const requestData = await request.json();
+    const { userCode, expectedOutput, task, hint } = requestData;
+    locale = requestData.locale || 'en-US'; // Set locale from request
 
     if (!userCode || !expectedOutput || !task) {
       return NextResponse.json(

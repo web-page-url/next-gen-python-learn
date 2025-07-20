@@ -120,7 +120,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     "aiHelpLabel": "🤖 AI Tutor Says:",
     "correctSolutionLabel": "✅ Correct Solution:",
     "aiTipLabel": "💡 AI Tip:",
-    "tryAgainButton": "Try Again"
+    "tryAgainButton": "Try Again" 
   },
   "es-ES": {
     "helloWorldTitle": "Hola Mundo",
