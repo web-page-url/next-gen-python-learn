@@ -4,14 +4,11 @@ import PyLingo from '@/components/PyLingo'
 import { levels } from '@/components/levels'
 import { generateLevelMetadata, generateBreadcrumbStructuredData } from '@/lib/seo'
 
-interface Props {
-  params: { locale: string; id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const levelId = parseInt(params.id)
-  const locale = params.locale === 'es' ? 'es-ES' : 'en-US'
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
+  const { locale, id } = await params
+  const levelId = parseInt(id)
+  const resolvedLocale = locale === 'es' ? 'es-ES' : 'en-US'
   
   if (isNaN(levelId) || !levels.find(l => l.id === levelId)) {
     return {
@@ -20,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  return generateLevelMetadata(levelId, locale)
+  return generateLevelMetadata(levelId, resolvedLocale)
 }
 
 export async function generateStaticParams() {
@@ -39,8 +36,9 @@ export async function generateStaticParams() {
   return params
 }
 
-export default function LocaleLevelPage({ params }: Props) {
-  const levelId = parseInt(params.id)
+export default async function LocaleLevelPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
+  const { locale, id } = await params
+  const levelId = parseInt(id)
   
   if (isNaN(levelId) || !levels.find(l => l.id === levelId)) {
     notFound()

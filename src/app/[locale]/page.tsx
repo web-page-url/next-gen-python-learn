@@ -3,11 +3,12 @@ import PyLingo from '@/components/PyLingo'
 import { TRANSLATIONS } from '@/components/translations'
 
 interface Props {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const locale = params.locale || 'en-US'
+  const { locale } = await params
+  const resolvedLocale = locale || 'en-US'
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'
   
   const titles: Record<string, string> = {
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'es': 'Domina la programación Python con nuestro tutorial interactivo paso a paso. Aprende variables, bucles, funciones y más a través de ejercicios de codificación prácticos. Perfecto para principiantes con retroalimentación impulsada por IA.'
   }
 
-  const lang = locale.split('-')[0]
+  const lang = resolvedLocale.split('-')[0]
   const title = titles[lang] || titles['en']
   const description = descriptions[lang] || descriptions['en']
 
@@ -30,15 +31,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}`,
-      locale: locale.replace('-', '_'),
+      url: `${baseUrl}/${resolvedLocale}`,
+      locale: resolvedLocale.replace('-', '_'),
     },
     twitter: {
       title,
       description,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: `${baseUrl}/${resolvedLocale}`,
       languages: {
         'en': `${baseUrl}/en`,
         'es': `${baseUrl}/es`,
@@ -55,6 +56,7 @@ export async function generateStaticParams() {
   ]
 }
 
-export default function LocalePage({ params }: Props) {
+export default async function LocalePage({ params }: Props) {
+  const { locale } = await params
   return <PyLingo />
 }

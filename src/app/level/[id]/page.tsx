@@ -5,12 +5,13 @@ import { levels } from '@/components/levels'
 import { generateLevelMetadata, generateBreadcrumbStructuredData } from '@/lib/seo'
 
 interface Props {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const levelId = parseInt(params.id)
+  const { id } = await params
+  const levelId = parseInt(id)
   
   if (isNaN(levelId) || !levels.find(l => l.id === levelId)) {
     return {
@@ -28,8 +29,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function LevelPage({ params }: Props) {
-  const levelId = parseInt(params.id)
+export default async function LevelPage({ params }: Props) {
+  const { id } = await params
+  const levelId = parseInt(id)
   
   if (isNaN(levelId) || !levels.find(l => l.id === levelId)) {
     notFound()
