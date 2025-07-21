@@ -46,10 +46,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'),
   alternates: {
     canonical: '/',
-    languages: {
-      'en-US': '/en',
-      'es-ES': '/es',
-    },
   },
   openGraph: {
     type: 'website',
@@ -117,7 +113,7 @@ export default function RootLayout({
               },
               "educationalLevel": "Beginner",
               "courseMode": "online",
-              "inLanguage": ["en", "es"],
+              "inLanguage": ["en"],
               "teaches": [
                 "Python Programming",
                 "Variables and Data Types",
@@ -173,10 +169,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="LearnPy" />
         <meta name="mobile-web-app-capable" content="yes" />
 
-        {/* Hreflang for multilingual SEO */}
-        <link rel="alternate" hrefLang="en" href={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'}/en`} />
-        <link rel="alternate" hrefLang="es" href={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'}/es`} />
-        <link rel="alternate" hrefLang="x-default" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'} />
+        {/* Canonical URL */}
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

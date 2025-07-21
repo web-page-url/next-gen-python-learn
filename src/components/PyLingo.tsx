@@ -5,18 +5,7 @@ import { Play, RotateCcw, Lightbulb, CheckCircle, Lock, Trophy, Flame } from 'lu
 import { TRANSLATIONS } from './translations';
 import { levels } from './levels';
 
-const appLocale = '{{APP_LOCALE}}';
-const browserLocale = typeof navigator !== 'undefined' ? (navigator.languages?.[0] || navigator.language || 'en-US') : 'en-US';
-
-const findMatchingLocale = (locale: string) => {
-  if (TRANSLATIONS[locale]) return locale;
-  const lang = locale.split('-')[0];
-  const match = Object.keys(TRANSLATIONS).find(key => key.startsWith(lang + '-'));
-  return match || 'en-US';
-};
-
-const locale = (appLocale !== '{{APP_LOCALE}}') ? findMatchingLocale(appLocale) : findMatchingLocale(browserLocale);
-const t = (key: string) => TRANSLATIONS[locale]?.[key] || TRANSLATIONS['en-US'][key] || key;
+const t = (key: string) => TRANSLATIONS['en-US'][key] || key;
 
 interface PyLingoProps {
   initialLevel?: number;
@@ -221,7 +210,7 @@ const PyLingo = ({ initialLevel = 1 }: PyLingoProps) => {
               task: level.task,
               hint: level.hint,
               level: currentLevel,
-              locale
+              locale: 'en-US'
             }),
           });
 

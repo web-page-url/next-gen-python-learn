@@ -68,10 +68,6 @@ export function generateLevelMetadata(levelId: number, locale: string = 'en-US')
     },
     alternates: {
       canonical: `${baseUrl}/level/${levelId}`,
-      languages: {
-        'en-US': `${baseUrl}/en/level/${levelId}`,
-        'es-ES': `${baseUrl}/es/level/${levelId}`,
-      },
     },
   }
 }
@@ -79,46 +75,22 @@ export function generateLevelMetadata(levelId: number, locale: string = 'en-US')
 export function generateTopicMetadata(topic: string, locale: string = 'en-US'): Metadata {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'
   
-  const topicTitles: Record<string, Record<string, string>> = {
-    'variables': {
-      'en-US': 'Python Variables Tutorial',
-      'es-ES': 'Tutorial de Variables en Python'
-    },
-    'loops': {
-      'en-US': 'Python Loops Tutorial',
-      'es-ES': 'Tutorial de Bucles en Python'
-    },
-    'functions': {
-      'en-US': 'Python Functions Tutorial',
-      'es-ES': 'Tutorial de Funciones en Python'
-    },
-    'data-structures': {
-      'en-US': 'Python Data Structures Tutorial',
-      'es-ES': 'Tutorial de Estructuras de Datos en Python'
-    }
+  const topicTitles: Record<string, string> = {
+    'variables': 'Python Variables Tutorial',
+    'loops': 'Python Loops Tutorial',
+    'functions': 'Python Functions Tutorial',
+    'data-structures': 'Python Data Structures Tutorial'
   }
 
-  const topicDescriptions: Record<string, Record<string, string>> = {
-    'variables': {
-      'en-US': 'Learn Python variables, data types, and variable assignment with interactive exercises and examples.',
-      'es-ES': 'Aprende variables de Python, tipos de datos y asignación de variables con ejercicios interactivos y ejemplos.'
-    },
-    'loops': {
-      'en-US': 'Master Python loops including for loops, while loops, and loop control with hands-on practice.',
-      'es-ES': 'Domina los bucles de Python incluyendo bucles for, while y control de bucles con práctica práctica.'
-    },
-    'functions': {
-      'en-US': 'Understand Python functions, parameters, return values, and function scope through interactive lessons.',
-      'es-ES': 'Comprende las funciones de Python, parámetros, valores de retorno y alcance de funciones a través de lecciones interactivas.'
-    },
-    'data-structures': {
-      'en-US': 'Explore Python data structures like lists, dictionaries, tuples, and sets with practical examples.',
-      'es-ES': 'Explora estructuras de datos de Python como listas, diccionarios, tuplas y conjuntos con ejemplos prácticos.'
-    }
+  const topicDescriptions: Record<string, string> = {
+    'variables': 'Learn Python variables, data types, and variable assignment with interactive exercises and examples.',
+    'loops': 'Master Python loops including for loops, while loops, and loop control with hands-on practice.',
+    'functions': 'Understand Python functions, parameters, return values, and function scope through interactive lessons.',
+    'data-structures': 'Explore Python data structures like lists, dictionaries, tuples, and sets with practical examples.'
   }
 
-  const title = topicTitles[topic]?.[locale] || topicTitles[topic]?.['en-US'] || `Python ${topic} Tutorial`
-  const description = topicDescriptions[topic]?.[locale] || topicDescriptions[topic]?.['en-US'] || `Learn Python ${topic} programming concepts.`
+  const title = topicTitles[topic] || `Python ${topic} Tutorial`
+  const description = topicDescriptions[topic] || `Learn Python ${topic} programming concepts.`
 
   return {
     title: `${title} | LearnPy`,
@@ -155,10 +127,6 @@ export function generateTopicMetadata(topic: string, locale: string = 'en-US'): 
     },
     alternates: {
       canonical: `${baseUrl}/topics/${topic}`,
-      languages: {
-        'en-US': `${baseUrl}/en/topics/${topic}`,
-        'es-ES': `${baseUrl}/es/topics/${topic}`,
-      },
     },
   }
 }
@@ -271,18 +239,8 @@ export function generateLevelStructuredData(levelId: number, locale: string = 'e
 export function generateCourseStructuredData(locale: string = 'en-US') {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://learn-py-ai.vercel.app'
 
-  const courseNames: Record<string, string> = {
-    'en-US': 'LearnPy - Interactive Python Programming Tutorial',
-    'es-ES': 'LearnPy - Tutorial Interactivo de Programación Python'
-  }
-
-  const courseDescriptions: Record<string, string> = {
-    'en-US': 'Complete interactive Python programming course for beginners. Learn variables, loops, functions, data structures and more through hands-on exercises.',
-    'es-ES': 'Curso completo e interactivo de programación Python para principiantes. Aprende variables, bucles, funciones, estructuras de datos y más a través de ejercicios prácticos.'
-  }
-
-  const courseName = courseNames[locale] || courseNames['en-US']
-  const courseDescription = courseDescriptions[locale] || courseDescriptions['en-US']
+  const courseName = 'LearnPy - Interactive Python Programming Tutorial'
+  const courseDescription = 'Complete interactive Python programming course for beginners. Learn variables, loops, functions, data structures and more through hands-on exercises.'
 
   return {
     "@context": "https://schema.org",
