@@ -508,12 +508,12 @@ const PyLingo = () => {
                     : 'bg-red-50 border border-red-200'
                 }`}>
                 <p className={`font-medium mb-2 ${feedback.type === 'success'
-                  ? 'text-green-800'
+                  ? 'text-black'
                   : feedback.type === 'loading'
-                    ? 'text-blue-800'
+                    ? 'text-black'
                     : feedback.type === 'ai-error'
-                      ? 'text-orange-800'
-                      : 'text-red-800'
+                      ? 'text-black'
+                      : 'text-black'
                   }`}>
                   {feedback.type === 'loading' ? (
                     <div className="flex items-center space-x-2">
@@ -532,9 +532,9 @@ const PyLingo = () => {
                       <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">
                         🤖
                       </div>
-                      <span className="font-semibold text-blue-800">AI Tutor is analyzing your code...</span>
+                      <span className="font-semibold text-black">AI Tutor is analyzing your code...</span>
                     </div>
-                    <p className="text-blue-700 text-sm">Check the right panel for detailed feedback!</p>
+                    <p className="text-black text-sm">Check the right panel for detailed feedback!</p>
                   </div>
                 )}
 
@@ -543,24 +543,24 @@ const PyLingo = () => {
                   <>
                     {feedback.explanation && (
                       <div className="mb-2">
-                        <p className="text-sm text-gray-700">{feedback.explanation}</p>
+                        <p className="text-sm text-black">{feedback.explanation}</p>
                       </div>
                     )}
                     {feedback.output && (
                       <div className="mb-2">
-                        <p className="text-sm text-gray-600 mb-1">{t('yourOutput')}</p>
-                        <pre className="bg-gray-100 p-2 rounded text-sm font-mono">{feedback.output}</pre>
+                        <p className="text-sm text-black mb-1">{t('yourOutput')}</p>
+                        <pre className="bg-gray-100 p-2 rounded text-sm font-mono text-black">{feedback.output}</pre>
                       </div>
                     )}
                     {feedback.expected && (
                       <div className="mb-2">
-                        <p className="text-sm text-gray-600 mb-1">{t('expectedOutput')}</p>
-                        <pre className="bg-gray-100 p-2 rounded text-sm font-mono">{feedback.expected}</pre>
+                        <p className="text-sm text-black mb-1">{t('expectedOutput')}</p>
+                        <pre className="bg-gray-100 p-2 rounded text-sm font-mono text-black">{feedback.expected}</pre>
                       </div>
                     )}
                     {feedback.hint && feedback.type === 'error' && (
                       <div className="mt-3 p-3 bg-blue-50 rounded">
-                        <p className="text-sm text-blue-800">
+                        <p className="text-sm text-black">
                           <strong>{t('tipLabel')}</strong> {feedback.hint}
                         </p>
                       </div>
@@ -630,7 +630,7 @@ const PyLingo = () => {
 
                 {/* AI Feedback Message */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                  <div className="text-gray-700 leading-relaxed text-base">
+                  <div className="text-black leading-relaxed text-base">
                     {feedback.aiFeedback.split('\n').map((paragraph: string, index: number) => (
                       paragraph.trim() && (
                         <p key={index} className="mb-3 last:mb-0">
@@ -654,7 +654,7 @@ const PyLingo = () => {
                         <span className="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
                         <h5 className="font-semibold text-red-700">Your Output</h5>
                       </div>
-                      <pre className="bg-red-50 p-3 rounded-lg text-sm font-mono text-red-800 border border-red-200 overflow-x-auto">
+                      <pre className="bg-red-50 p-3 rounded-lg text-sm font-mono text-black border border-red-200 overflow-x-auto">
                         {feedback.output || 'No output'}
                       </pre>
                     </div>
@@ -665,7 +665,7 @@ const PyLingo = () => {
                         <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
                         <h5 className="font-semibold text-green-700">Expected Output</h5>
                       </div>
-                      <pre className="bg-green-50 p-3 rounded-lg text-sm font-mono text-green-800 border border-green-200 overflow-x-auto">
+                      <pre className="bg-green-50 p-3 rounded-lg text-sm font-mono text-black border border-green-200 overflow-x-auto">
                         {feedback.expected}
                       </pre>
                     </div>
@@ -675,7 +675,7 @@ const PyLingo = () => {
                 {/* Correct Solution */}
                 {feedback.correctCode && (
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                    <h4 className="text-lg font-semibold text-green-800 mb-4 flex items-center">
+                    <h4 className="text-lg font-semibold text-black mb-4 flex items-center">
                       <span className="mr-2">✨</span>
                       Here's the Correct Solution
                     </h4>
