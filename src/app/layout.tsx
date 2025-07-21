@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     "Python practice",
     "programming education"
   ],
-  authors: [{ name: "LearnPy Team" }],
-  creator: "LearnPy",
+  authors: [{ name: "Anubhav", url: "https://www.linkedin.com/in/anubhav-chaudhary-4bba7918b/" }],
+  creator: "Anubhav",
   publisher: "LearnPy",
   formatDetection: {
     email: false,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: 'LearnPy',
     images: [
       {
-        url: '/og-image.png',
+        url: '/learn-py-1.0.jpg',
         width: 1200,
         height: 630,
         alt: 'LearnPy - Interactive Python Programming Tutorial',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'LearnPy - Interactive Python Programming Tutorial for Beginners',
     description: 'Master Python programming with our interactive, step-by-step tutorial. Perfect for beginners with AI-powered feedback.',
-    images: ['/twitter-image.png'],
+    images: ['/learn-py-1.0.jpg'],
     creator: '@learnpy_dev',
   },
   robots: {
@@ -185,6 +185,23 @@ export default function RootLayout({
           <Analytics />
         </Suspense>
         {children}
+
+        {/* Footer */}
+        <footer className="bg-gray-50 border-t border-gray-200 py-6 mt-8">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <p className="text-gray-600 text-sm">
+              Created with ❤️ by{" "}
+              <a
+                href="https://www.linkedin.com/in/anubhav-chaudhary-4bba7918b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 hover:underline"
+              >
+                Anubhav
+              </a>
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
