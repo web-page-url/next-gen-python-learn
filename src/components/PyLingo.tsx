@@ -18,9 +18,13 @@ const findMatchingLocale = (locale: string) => {
 const locale = (appLocale !== '{{APP_LOCALE}}') ? findMatchingLocale(appLocale) : findMatchingLocale(browserLocale);
 const t = (key: string) => TRANSLATIONS[locale]?.[key] || TRANSLATIONS['en-US'][key] || key;
 
-const PyLingo = () => {
+interface PyLingoProps {
+  initialLevel?: number;
+}
+
+const PyLingo = ({ initialLevel = 1 }: PyLingoProps) => {
   // State management
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState(initialLevel);
   const [userCode, setUserCode] = useState(levels[0].starterCode);
   const [completedLevels, setCompletedLevels] = useState(new Set<number>());
   const [showHint, setShowHint] = useState(false);

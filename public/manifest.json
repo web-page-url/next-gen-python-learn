@@ -1,0 +1,84 @@
+{
+  "name": "LearnPy - Interactive Python Programming Tutorial",
+  "short_name": "LearnPy",
+  "description": "Master Python programming with our interactive, step-by-step tutorial. Learn variables, loops, functions, and more through hands-on coding exercises.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity", "developer"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "LearnPy Python Tutorial Interface"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "LearnPy Mobile Interface"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Learning",
+      "short_name": "Learn",
+      "description": "Start learning Python from the beginning",
+      "url": "/level/1",
+      "icons": [
+        {
+          "src": "/shortcut-learn.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Practice Mode",
+      "short_name": "Practice",
+      "description": "Practice Python coding exercises",
+      "url": "/practice",
+      "icons": [
+        {
+          "src": "/shortcut-practice.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
